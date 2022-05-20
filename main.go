@@ -11,6 +11,7 @@ var (
 	uFlag  = flag.String("u", "", "Username.")
 	pFlag  = flag.String("p", "", "Password.")
 	rFlag  = flag.String("r", "", "Reg. nr. of the car.")
+	cFlag  = flag.String("c", "", "Confirmation email address.")
 	eFlag  = flag.Bool("e", false, "If the parking should be extended, ie. 72 hours, instead of 6 hours.")
 	vFalg  = flag.Bool("v", false, "Verbose output.")
 	vvFalg = flag.Bool("vv", false, "Extra verbose output. Adds network request logging.")
@@ -23,6 +24,7 @@ func main() {
 	password := *pFlag
 	regNr := *rFlag
 	extended := *eFlag
+	confirmationEmail := *cFlag
 	verbose := *vFalg || *vvFalg
 
 	if username == "" || password == "" || regNr == "" {
@@ -33,6 +35,7 @@ func main() {
 		log.Println("Username:", username)
 		log.Println("Password:", password)
 		log.Println("Reg. nr.:", regNr)
+		log.Println("Email:", confirmationEmail)
 		log.Println("Extended:", extended)
 		log.Println("Verbose:", verbose)
 	}
@@ -129,11 +132,17 @@ func main() {
 		TermsAccepted:                false,
 		AcceptedTermsAndConditionsId: nil,
 		QualificationForm:            []string{},
+		ConfirmationEmail:            confirmationEmail,
 	})
 	if registerRes.ResultCode != "SUCCESS" {
 		LogFatalApiError("Failed to register", registerRes.ApiError)
 	}
 
 	log.Printf("Successfully registered at %s parking for %q, from %s to %s\n", registerRes.Parking.AgentName, regNr, registerRes.Parking.StartTime, registerRes.Parking.EndTime)
+
+	if confirmationEmail != "" {
+		log.Printf("Confirmation email sent to %q\n", confirmationEmail)
+	}
+
 	os.Exit(0)
 }

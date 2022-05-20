@@ -54,6 +54,7 @@ type RegisterRequest struct {
 	ProductId                    string   `json:"productId"`
 	TermsAccepted                bool     `json:"termsAccepted"`
 	AcceptedTermsAndConditionsId *string  `json:"acceptedTermsAndConditionsId"`
+	ConfirmationEmail            string   `json:"confirmationEmail,omitempty"`
 	QualificationForm            []string `json:"qualificationForm"`
 }
 
