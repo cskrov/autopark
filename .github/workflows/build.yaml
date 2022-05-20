@@ -23,6 +23,11 @@ jobs:
         run: ./build.sh
       - uses: actions/upload-artifact@v3
         with:
-          name: binaries
-          path: autopark-*
+          name: autopark-x86-64-linux
+          path: autopark-x86-64-linux
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v3
+        with:
+          name: autopark-aarch64-linux
+          path: autopark-aarch64-linux
           if-no-files-found: error
