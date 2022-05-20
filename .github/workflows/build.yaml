@@ -21,3 +21,8 @@ jobs:
         run: go test
       - name: Build
         run: ./build.sh
+      - uses: actions/upload-artifact@v3
+        with:
+          name: binaries
+          path: autopark-*
+          if-no-files-found: error
