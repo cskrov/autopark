@@ -8,13 +8,13 @@ import (
 )
 
 var (
-	uFlag  = flag.String("u", "", "Username.")
-	pFlag  = flag.String("p", "", "Password.")
-	rFlag  = flag.String("r", "", "Reg. nr. of the car.")
-	cFlag  = flag.String("c", "", "Confirmation email address.")
-	eFlag  = flag.Bool("e", false, "If the parking should be extended, ie. 72 hours, instead of 6 hours.")
-	vFalg  = flag.Bool("v", false, "Verbose output.")
-	vvFalg = flag.Bool("vv", false, "Extra verbose output. Adds network request logging.")
+	uFlag  = flag.String("u", "", "Username. (required)")
+	pFlag  = flag.String("p", "", "Password. (required)")
+	rFlag  = flag.String("r", "", "Reg. nr. of the car. (required)")
+	cFlag  = flag.String("c", "", "Confirmation email address. (optional)")
+	eFlag  = flag.Bool("e", false, "If the parking should be extended, ie. 72 hours, instead of 6 hours. (optional)")
+	vFalg  = flag.Bool("v", false, "Verbose output. (optional)")
+	vvFalg = flag.Bool("vv", false, "Extra verbose output. Adds network request logging. (optional)")
 )
 
 func main() {
