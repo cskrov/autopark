@@ -1,4 +1,5 @@
 main
 autopark
+autopark-*
 *.exe
 *.bin
